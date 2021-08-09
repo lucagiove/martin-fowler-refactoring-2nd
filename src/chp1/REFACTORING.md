@@ -9,3 +9,4 @@ Below the ordered list of refactoring suggested by Martin Fowler in chapter 1.
 - Extract function `volumeCreditsFor` and rename variables
 - Split Loop and slide Statements
 - Replace Temp with Query `totalVolumeCredits`
+- Split Loop and slide Statements and Replace Temp with Query `totalAmount`
