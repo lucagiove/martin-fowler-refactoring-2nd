@@ -6,3 +6,4 @@ Below the ordered list of refactoring suggested by Martin Fowler in chapter 1.
 - Replace Temp with Query `play`
 - Change Function Declaration `amountFor`
 - Inline Variable `thisAmount`
+- Extract function `volumeCreditsFor` and rename variables
