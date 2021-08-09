@@ -8,3 +8,4 @@ Below the ordered list of refactoring suggested by Martin Fowler in chapter 1.
 - Inline Variable `thisAmount`
 - Extract function `volumeCreditsFor` and rename variables
 - Split Loop and slide Statements
+- Replace Temp with Query `totalVolumeCredits`
