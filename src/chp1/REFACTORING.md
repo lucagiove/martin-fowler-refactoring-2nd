@@ -7,3 +7,4 @@ Below the ordered list of refactoring suggested by Martin Fowler in chapter 1.
 - Change Function Declaration `amountFor`
 - Inline Variable `thisAmount`
 - Extract function `volumeCreditsFor` and rename variables
+- Change function variable to declared function `format` and Change function declaration to `usd`
