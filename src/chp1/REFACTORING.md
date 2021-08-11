@@ -21,4 +21,5 @@ Replace Temp with Query `play`
 
 ## Status: Lots of Nested Functions
 
-- 
+- Split Phase: calculate data, render to txt and html
+  - Extract function `renderPlainText`
