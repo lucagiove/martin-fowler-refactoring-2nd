@@ -24,4 +24,5 @@ Replace Temp with Query `play`
 - Split Phase: calculate data, render to txt and html
   - Extract function `renderPlainText`
   - Introduce Parameter Object `statementData`
-  - Enrich `performance` with data from play 
+  - Enrich `performance` with data from `play`
+  - Enrich `performance` with calculated data `amount`
