@@ -27,3 +27,4 @@ Replace Temp with Query `play`
   - Enrich `performance` with data from `play`
   - Enrich `performance` with calculated data `amount`
   - Enrich `performance` with calculated data `volumeCredits`
+  - Add total `amount` and `volumeCredits` to `statementData`
