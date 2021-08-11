@@ -26,3 +26,4 @@ Replace Temp with Query `play`
   - Introduce Parameter Object `statementData`
   - Enrich `performance` with data from `play`
   - Enrich `performance` with calculated data `amount`
+  - Enrich `performance` with calculated data `volumeCredits`
