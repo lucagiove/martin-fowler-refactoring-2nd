@@ -30,4 +30,5 @@ Replace Temp with Query `play`
   - Add total `amount` and `volumeCredits` to `statementData`
   - Replace Loop with Pipeline
   - Extract function `createStatementData` and put in its own file (phase 1)
+  - Statement rendering for both HTML and TXT (phase 2) 
 
