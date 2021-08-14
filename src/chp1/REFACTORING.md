@@ -41,4 +41,4 @@ Replace Temp with Query `play`
   - Inline Function `amountFor`
   - Move and Inline Function `volumeCreditsFor`
   - Replace Constructor with Factory Function `createPerformanceCalculator`
-
+  - Replace Type Code with Subclasses `TragedyCalculator` and `ComedyCalculator`
