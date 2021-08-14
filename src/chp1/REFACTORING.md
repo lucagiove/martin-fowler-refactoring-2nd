@@ -43,3 +43,4 @@ Replace Temp with Query `play`
   - Replace Constructor with Factory Function `createPerformanceCalculator`
   - Replace Type Code with Subclasses `TragedyCalculator` and `ComedyCalculator`
   - Replace Conditional with Polymorphism `amount`
+  - Replace Conditional with Polymorphism `volumeCredits`
