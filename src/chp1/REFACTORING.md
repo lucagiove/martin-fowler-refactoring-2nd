@@ -39,4 +39,5 @@ Replace Temp with Query `play`
   - Change Function Declaration to add `play`
   - Move Function `amountFor`
   - Inline Function `amountFor`
+  - Move and Inline Function `volumeCreditsFor`
 
