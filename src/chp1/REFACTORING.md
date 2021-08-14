@@ -38,4 +38,5 @@ Replace Temp with Query `play`
   - Create a new class `PerformanceCalculator`
   - Change Function Declaration to add `play`
   - Move Function `amountFor`
+  - Inline Function `amountFor`
 
