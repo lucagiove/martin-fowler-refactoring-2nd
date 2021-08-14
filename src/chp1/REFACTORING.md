@@ -42,3 +42,4 @@ Replace Temp with Query `play`
   - Move and Inline Function `volumeCreditsFor`
   - Replace Constructor with Factory Function `createPerformanceCalculator`
   - Replace Type Code with Subclasses `TragedyCalculator` and `ComedyCalculator`
+  - Replace Conditional with Polymorphism `amount`
