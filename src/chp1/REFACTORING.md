@@ -1,8 +1,8 @@
 # Refactoring a First Example
 
-## Requirments
+## Requirements
 
-The users wants:
+The users want:
 - To support HTML printed version of the statement
 - Add more kinds of plays 
 
@@ -31,4 +31,9 @@ Replace Temp with Query `play`
   - Replace Loop with Pipeline
   - Extract function `createStatementData` and put in its own file (phase 1)
   - Statement rendering for both HTML and TXT (phase 2) 
+
+## Status separated into two files (and phases)
+
+- Replace Conditional with Polymorphism: support more categories of play
+  - Create a new class `PerformanceCalculator`
 
