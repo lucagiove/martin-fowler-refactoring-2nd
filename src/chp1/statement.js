@@ -2,8 +2,13 @@ export {statement}
 
 function statement(invoice, plays) {
 
+    function playFor(aPerformance) {
+        return plays[aPerformance.playID];
+    }
+
     function amountFor(aPerformance) {
         let result = 0;
+
         switch (playFor(aPerformance).type) {
             case "tragedy":
                 result = 40000;
@@ -24,8 +29,12 @@ function statement(invoice, plays) {
         return result;
     }
 
-    function playFor(aPerformance) {
-        return plays[aPerformance.playID]
+    function volumeCreditsFor(aPerformance) {
+        let result = 0;
+        result += Math.max(aPerformance.audience - 30, 0);
+        // add extra credit for every ten comedy attendees
+        if ("comedy" === playFor(aPerformance).type) result += Math.floor(aPerformance.audience / 5);
+        return result
     }
 
     let totalAmount = 0;
@@ -37,19 +46,11 @@ function statement(invoice, plays) {
             minimumFractionDigits: 2
         }).format;
 
-
-
     for (let perf of invoice.performances) {
-        let amount = amountFor(perf);
+        volumeCredits += volumeCreditsFor(perf);
 
-        // add volume credits
-        volumeCredits += Math.max(perf.audience - 30, 0);
-        // add extra credit for every ten comedy attendees
-        if ("comedy" === playFor(perf).type) volumeCredits += Math.floor(perf.audience / 5);
-
-        // print line for this order
-        result += `  ${playFor(perf).name}: ${format(amount / 100)} (${perf.audience} seats)\n`;
-        totalAmount += amount;
+        result += `  ${playFor(perf).name}: ${format(amountFor(perf) / 100)} (${perf.audience} seats)\n`;
+        totalAmount += amountFor(perf);
     }
     result += `Amount owed is ${format(totalAmount / 100)}\n`;
     result += `You earned ${volumeCredits} credits\n`;
