@@ -15,7 +15,7 @@ function renderPlainText(statementData) {
     return result;
 }
 
-function htmlStatement(invoice, plays) {
+export function htmlStatement(invoice, plays) {
     return renderHtml(createStatementData(invoice, plays));
 }
 
