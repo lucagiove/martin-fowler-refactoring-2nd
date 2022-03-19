@@ -1,47 +1,85 @@
 export {statement}
 
 function statement(invoice, plays) {
-    let totalAmount = 0;
-    let volumeCredits = 0;
-    let result = `Statement for ${invoice.customer}\n`;
-    const format = new Intl.NumberFormat("en-US",
-        {
-            style: "currency", currency: "USD",
-            minimumFractionDigits: 2
-        }).format;
+    const statementData = {}
+    statementData.customer = invoice.customer
+    statementData.performances = invoice.performances.map(enrichPerformance)
+    statementData.totalAmount = totalAmount(statementData)
+    statementData.totalVolumeCredits = totalVolumeCredits(statementData)
+    return renderPlainText(statementData, plays);
 
-    for (let perf of invoice.performances) {
-        const play = plays[perf.playID];
-        let thisAmount = 0;
+    function enrichPerformance(aPerformance) {
+        const result = Object.assign({}, aPerformance)
+        result.play = playFor(result)
+        result.amount = amountFor(result)
+        result.volumeCredits = volumeCreditsFor(result)
+        return result
+    }
 
-        switch (play.type) {
+    function playFor(aPerformance) {
+        return plays[aPerformance.playID];
+    }
+
+    function amountFor(aPerformance) {
+        let result = 0;
+
+        switch (aPerformance.play.type) {
             case "tragedy":
-                thisAmount = 40000;
-                if (perf.audience > 30) {
-                    thisAmount += 1000 * (perf.audience - 30);
+                result = 40000;
+                if (aPerformance.audience > 30) {
+                    result += 1000 * (aPerformance.audience - 30);
                 }
                 break;
             case "comedy":
-                thisAmount = 30000;
-                if (perf.audience > 20) {
-                    thisAmount += 10000 + 500 * (perf.audience - 20);
+                result = 30000;
+                if (aPerformance.audience > 20) {
+                    result += 10000 + 500 * (aPerformance.audience - 20);
                 }
-                thisAmount += 300 * perf.audience;
+                result += 300 * aPerformance.audience;
                 break;
             default:
-                throw new Error(`unknown type: ${play.type}`);
+                throw new Error(`unknown type: ${playFor(aPerformance).type}`);
         }
-
-        // add volume credits
-        volumeCredits += Math.max(perf.audience - 30, 0);
-        // add extra credit for every ten comedy attendees
-        if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
-
-        // print line for this order
-        result += `  ${play.name}: ${format(thisAmount / 100)} (${perf.audience} seats)\n`;
-        totalAmount += thisAmount;
+        return result;
     }
-    result += `Amount owed is ${format(totalAmount / 100)}\n`;
-    result += `You earned ${volumeCredits} credits\n`;
-    return result;
+
+    function volumeCreditsFor(aPerformance) {
+        let result = 0
+        result += Math.max(aPerformance.audience - 30, 0);
+        if ("comedy" === aPerformance.play.type) result += Math.floor(aPerformance.audience / 5);
+        return result
+    }
+
+    function totalAmount(data) {
+        return data.performances.reduce((total, p) => total + p.amount, 0)
+    }
+
+    function totalVolumeCredits(data) {
+        return data.performances.reduce((total, p) => total + p.volumeCredits, 0)
+    }
 }
+
+function renderPlainText(data) {
+
+    let result = `Statement for ${data.customer}\n`;
+
+    for (let aPerformance of data.performances) {
+        result += `  ${aPerformance.play.name}: ${usd(aPerformance.amount)} (${aPerformance.audience} seats)\n`;
+    }
+
+    result += `Amount owed is ${usd(data.totalAmount)}\n`;
+    result += `You earned ${(data.totalVolumeCredits)} credits\n`;
+    return result;
+
+    function usd(aNumber) {
+        const format = new Intl.NumberFormat("en-US",
+            {
+                style: "currency", currency: "USD",
+                minimumFractionDigits: 2
+            }).format;
+        return format(aNumber / 100);
+    }
+}
+
+
+
