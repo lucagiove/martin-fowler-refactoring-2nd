@@ -1,20 +1,30 @@
 # Refactoring a First Example
 
+This program might not really need a big refactor but, you should
+imagine this as bigger project at small scale.
+
 ## Requirements
 
-The users want:
+The users wants:
 - To support HTML printed version of the statement
-- Add more kinds of plays 
+- Add more kinds of plays
 
 Below the ordered list of refactoring suggested by Martin Fowler in chapter 1.
 
 ## Decompose the statement function
 
-- Extract Function `amountFor` and rename variables `thisAmount` and `perf`
-Replace Temp with Query `play`
+Identify point that separate different parts
+
+- Extract Function `amountFor` and rename variables :
+  - `thisAmount` -> `result` to make clear the function output
+  - `perf` -> `aPerformance` to make clear that it's an instance
+- Replace Temp with Query `play`
+  - temps are useful to give a name to things but local scope complicates extraction
+  - play might be computed by the performance
 - Change Function Declaration `amountFor`
 - Inline Variable `thisAmount`
 - Extract function `volumeCreditsFor` and rename variables
+- Change function variable to declared function `format` and Change function declaration to `usd`
 - Split Loop and slide Statements
 - Replace Temp with Query `totalVolumeCredits`
 - Split Loop and slide Statements and Replace Temp with Query `totalAmount`
@@ -22,15 +32,15 @@ Replace Temp with Query `play`
 ## Status: Lots of Nested Functions
 
 - Split Phase: calculate data, render to txt and html
-  - Extract function `renderPlainText`
+  - Extract function `statement` to `renderPlainText`
   - Introduce Parameter Object `statementData`
   - Enrich `performance` with data from `play`
   - Enrich `performance` with calculated data `amount`
   - Enrich `performance` with calculated data `volumeCredits`
-  - Add total `amount` and `volumeCredits` to `statementData`
+  - Add `totalAmount` and `volumeCredits` to `statementData`
   - Replace Loop with Pipeline
   - Extract function `createStatementData` and put in its own file (phase 1)
-  - Statement rendering for both HTML and TXT (phase 2) 
+  - Statement rendering for both HTML and TXT (phase 2)
 
 ## Status separated into two files (and phases)
 
