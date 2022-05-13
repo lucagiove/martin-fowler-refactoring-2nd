@@ -25,15 +25,23 @@ Identify points that separate different parts
 - Inline Variable `thisAmount`
 - Extract function `volumeCreditsFor` and rename variables
 - Change function variable to declared function `format` and Change function declaration to `usd`
+- Split Loop
+  - Slide Statement `volumeCredits`
+  - Replace Temp with Query `totalVolumeCredits()`
 - Split Loop and slide Statements
-- Replace Temp with Query `totalVolumeCredits`
-- Split Loop and slide Statements and Replace Temp with Query `totalAmount`
+  - Slide Statement `totalAmount`
+  - Replace Temp with Query `totalAmount()`
 
 ## Status: Lots of Nested Functions
 
+Now there is more cohesion with the code that renders the text, but still extrmely coupled.
+
 - Split Phase: calculate data, render to txt and html
   - Extract function `statement` to `renderPlainText`
+    - Parameters passed to render method are too generic, probably a new data structure just for render is needed.
   - Introduce Parameter Object `statementData`
+    - Move `customer` under `statementData`
+    - Move `performances` under `statementData`
   - Enrich `performance` with data from `play`
   - Enrich `performance` with calculated data `amount`
   - Enrich `performance` with calculated data `volumeCredits`
