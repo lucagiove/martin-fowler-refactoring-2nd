@@ -13,7 +13,7 @@ Below the ordered list of refactoring suggested by Martin Fowler in chapter 1.
 
 ## Decompose the statement function
 
-Identify point that separate different parts
+Identify points that separate different parts
 
 - Extract Function `amountFor` and rename variables :
   - `thisAmount` -> `result` to make clear the function output
