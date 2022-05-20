@@ -34,7 +34,7 @@ Identify points that separate different parts
 
 ## Status: Lots of Nested Functions
 
-Now there is more cohesion with the code that renders the text, but still extrmely coupled.
+Now there is more cohesion with the code that renders the text, but still extremely coupled.
 
 - Split Phase: calculate data, render to txt and html
   - Extract function `statement` to `renderPlainText`
@@ -49,6 +49,7 @@ Now there is more cohesion with the code that renders the text, but still extrme
   - Replace Loop with Pipeline
   - Extract function `createStatementData` and put in its own file (phase 1)
   - Statement rendering for both HTML and TXT (phase 2)
+- Add HTML Statement feature is now easy modifying only the rendering phase
 
 ## Status separated into two files (and phases)
 
