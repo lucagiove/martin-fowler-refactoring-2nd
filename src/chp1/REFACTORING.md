@@ -18,12 +18,13 @@ Identify points that separate different parts
 - Extract Function `amountFor` and rename variables :
   - `thisAmount` -> `result` to make clear the function output
   - `perf` -> `aPerformance` to make clear that it's an instance
-- Replace Temp with Query `play`
+- Replace Temp with Query `playFor`
   - temps are useful to give a name to things but local scope complicates extraction
   - play might be computed by the performance
 - Change Function Declaration `amountFor`
-- Inline Variable `thisAmount`
+- Inline Variable `thisAmount` (in function statement)
 - Extract function `volumeCreditsFor` and rename variables
+  - make sure it returns
 - Change function variable to declared function `format` and Change function declaration to `usd`
 - Split Loop
   - Slide Statement `volumeCredits`
